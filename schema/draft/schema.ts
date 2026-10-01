@@ -634,7 +634,7 @@ export interface CancelledNotificationParams extends NotificationParams {
 /**
  * This notification is sent by the client to indicate that it is cancelling a request it previously issued.
  *
- * On stdio, the server also sends this notification, solely to terminate a {@link SubscriptionsListenRequest | subscriptions/listen} stream: it references the ID of the `subscriptions/listen` request that opened the stream. Servers MUST NOT use this notification to cancel any other request.
+ * A server does not send this notification. To tear down a `subscriptions/listen` stream, the server SHOULD send a successful {@link SubscriptionsListenResult} and then close the stream.
  *
  * The request SHOULD still be in-flight, but due to communication latency, it is always possible that this notification MAY arrive after the request has already finished.
  *
